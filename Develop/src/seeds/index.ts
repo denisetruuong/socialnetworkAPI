@@ -1,7 +1,8 @@
-import db from '../config/connection.js';
-import { Course, Student } from '../models/index.js';
-import cleanDB from './cleanDB.js';
-import { getRandomName, getRandomAssignments } from './data.js';
+import db from "../config/connection.js";
+import Thought from "../models/Thoughts.js";
+import { Thoughts, User } from "../models/index.js";
+import cleanDB from "./cleanDB.js";
+import { getRandomName, getRandomAssignments } from "./data.js";
 
 try {
   await db();
@@ -16,8 +17,8 @@ try {
     const assignments = getRandomAssignments(20);
 
     const fullName = getRandomName();
-    const first = fullName.split(' ')[0];
-    const last = fullName.split(' ')[1];
+    const first = fullName.split(" ")[0];
+    const last = fullName.split(" ")[1];
     const github = `${first}${Math.floor(Math.random() * (99 - 18 + 1) + 18)}`;
 
     students.push({
@@ -29,21 +30,20 @@ try {
   }
 
   // Add students to the collection and await the results
-  const studentData = await Student.create(students);
+  const studentData = await User.create(students);
 
   // Add courses to the collection and await the results
-  await Course.create({
-    name: 'UCLA',
+  await Thoughts.create({
+    name: "UCLA",
     inPerson: false,
     students: [...studentData.map(({ _id }: { [key: string]: any }) => _id)],
   });
 
   // Log out the seed data to indicate what should appear in the database
   console.table(students);
-  console.info('Seeding complete! 🌱');
+  console.info("Seeding complete! 🌱");
   process.exit(0);
 } catch (error) {
-  console.error('Error seeding database:', error);
+  console.error("Error seeding database:", error);
   process.exit(1);
 }
-
