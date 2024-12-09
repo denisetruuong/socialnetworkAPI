@@ -1,8 +1,8 @@
 import { Router } from "express";
 const router = Router();
 import {
-  getAllUsers,
-  getUserById,
+  getUsers,
+  getSingleUser,
   createUser,
   deleteUser,
   addFriend,
@@ -11,10 +11,10 @@ import {
 } from "../../controllers/userController.js";
 
 // /api/users
-router.route("/").get(getAllUsers).post(createUser);
+router.route("/").get(getUsers).post(createUser);
 
 // /api/users/:userId
-router.route("/:userId").get(getUserById).delete(deleteUser).put(updateUser);
+router.route("/:userId").get(getSingleUser).delete(deleteUser).put(updateUser);
 
 // /api/users/:userId/assignments
 router.route("/:userId/friend/:friendId").post(addFriend);
