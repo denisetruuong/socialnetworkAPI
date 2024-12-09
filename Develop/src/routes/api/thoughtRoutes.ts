@@ -2,7 +2,6 @@ import { Router } from "express";
 const router = Router();
 import {
   getThoughts,
-  getThoughtById,
   createThought,
   updateThought,
   deleteThought,
@@ -16,7 +15,7 @@ router.route("/").get(getThoughts).post(createThought);
 // /api/thoughts/:thoughtId
 router
   .route("/:thoughtId")
-  .get(getThoughtById)
+  .get(getThoughts) // Replace getThoughtById with getThoughts
   .put(updateThought)
   .delete(deleteThought);
 
