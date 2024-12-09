@@ -1,5 +1,4 @@
 import db from "../config/connection.js";
-import Thought from "../models/Thoughts.js";
 import { Thoughts, User } from "../models/index.js";
 import cleanDB from "./cleanDB.js";
 import { getRandomName, getRandomAssignments } from "./data.js";

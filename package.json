@@ -2,5 +2,8 @@
   "dependencies": {
     "@types/mongoose": "^5.11.96",
     "mongoose": "^8.8.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1"
   }
 }
